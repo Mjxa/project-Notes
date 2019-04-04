@@ -1,0 +1,18 @@
+extends layout
+
+block contentTodos
+  h1 #{title}
+
+  #myDIV.header-todos
+    .form-row
+      .col-9.mb-3
+        input#todoTitle.form-control(name='header' placeholder='List name..')
+      .col-9
+        input#myInput.form-control(type='text', placeholder='Add list item here...')   
+      .col
+        span.addBtn.btn.btn-secondary.form-control Add
+  ul#myUL
+  br 
+  input.btn.btn-primary(type='button', value='Submit')
+
+

@@ -1,0 +1,19 @@
+extends layout
+
+block contentTodos
+  #myDIV.header-todos
+    h1= title
+    br
+    .form-row
+      .col-9
+        input#myInput.form-control(type='text', placeholder='Add list item here...')
+        input#inputId(type='hidden', value=todo_id)   
+      .col
+        span.addBtn.btn.btn-secondary.form-control Add    
+  ul#myUL
+    each todo in todos
+     li(class=`${todo.checked ? "checked listItem" :"listItem"}` )= todo.text
+  hr
+  .mb-5
+    input.btn.btn-success.mr-3(type='button', value='Exit')
+    a.btn.btn-danger.delete-todo(href='#', data-id=todo_id) Delete
