@@ -60,7 +60,9 @@ router.post('/edit/:id', function(req, res){
 
   let query = {_id: req.params.id};
 
-  Note.update(query, note, function(err){
+//Правка от Тараса
+
+  Note.updateOne(query, note, function(err){
     if(err) {
       console.error(err);
       return;
@@ -75,7 +77,9 @@ router.post('/edit/:id', function(req, res){
 router.delete('/:id', function(req, res){
   let query = {_id: req.params.id};
 
-  Note.remove(query, function(err){
+//правка от Тараса
+
+  Note.deleteOne(query, function(err){
     if(err) {
       console.error(err);
       return;

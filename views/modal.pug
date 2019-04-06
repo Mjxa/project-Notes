@@ -1,0 +1,12 @@
+.container
+  button.d-none(data-toggle='modal', data-target='#myModal',id="openModal")
+  #myModal.modal.fade(role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-warning
+          button.close(type='button', data-dismiss='modal') ×
+          h4.modal-title WARNING
+        .modal-body
+          p.h5 Please fill in all fields
+        .modal-footer.bg-warning
+          button.btn.btn-default(type='button', data-dismiss='modal') Close

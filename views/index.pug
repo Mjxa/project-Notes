@@ -3,33 +3,35 @@ extends layout
 block content
   h1.text-center.mb-3 #{title}
   .card-columns
-    each note, i in notes
-      .card.border-warning
-        .card-body
-          h5.card-title= note.title
-          .collapse.card-text.note= note.body
-            hr
-            .buttons.my-3
-              a.btn.btn-warning.mr-3(href='/notes/edit/'+note._id) Edit
-              a.btn.btn-danger.delete-note(href='#', data-id=note._id) Delete
-          a.collapsed.more-less(data-toggle='collapse', href='#card'+i, aria-expanded='false')
-    each todo, i in todos
-      .card.border-danger
-        .card-body
-          h5.card-title= todo.title
-          .collapse.card-text.to-do
-            ul.card-list.d-flex.flex-column
-              each item in todo.body
-                if item.checked
-                  li.card-list-item-ch
-                    i.fa.fa-check
-                    span.ml-3= item.text
-                else  
-                  li.card-list-item-uch
-                    i.fa.fa-check
-                    span.ml-3= item.text                              
-            hr
-            .buttons.my-3
-              a.btn.btn-warning.mr-3(href='/todos/'+todo._id) Edit
-              a.btn.btn-danger.delete-todo(href='#', data-id=todo._id) Delete
-          a.collapsed.more-less(data-toggle='collapse', href='#todo'+i, aria-expanded='false')
+    div(id="notes_block")
+      each note, i in notes
+        .card.border-warning
+          .card-body
+            h5.card-title= note.title
+            .collapse.card-text.note= note.body
+              hr
+              .buttons.my-3
+                a.btn.btn-warning.mr-3(href='/notes/edit/'+note._id) Edit
+                a.btn.btn-danger.delete-note(href='#', data-id=note._id) Delete
+            a.collapsed.more-less(data-toggle='collapse', href='#card'+i, aria-expanded='false')
+    div(id="todo_block")        
+      each todo, i in todos
+        .card.border-danger
+          .card-body
+            h5.card-title= todo.title
+            .collapse.card-text.to-do
+              ul.card-list.d-flex.flex-column
+                each item in todo.body
+                  if item.checked
+                    li.card-list-item-ch
+                      i.fa.fa-check
+                      span.ml-3= item.text
+                  else  
+                    li.card-list-item-uch
+                      i.fa.fa-check
+                      span.ml-3= item.text                              
+              hr
+              .buttons.my-3
+                a.btn.btn-warning.mr-3(href='/todos/'+todo._id) Edit
+                a.btn.btn-danger.delete-todo(href='#', data-id=todo._id) Delete
+            a.collapsed.more-less(data-toggle='collapse', href='#todo'+i, aria-expanded='false')

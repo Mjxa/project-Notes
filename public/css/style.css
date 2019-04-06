@@ -174,3 +174,21 @@ ul{
     color: #fff;
     transition:.5s;
 }
+
+.todo-title {
+    border: none;
+    text-align: center;
+}
+.top-links{
+    z-index: 1021;
+    border-radius: 10px;
+    position: fixed;
+    right:5%;
+    top:5px;
+    transition: all 0.4s ease-in-out 0s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width:50%
+}

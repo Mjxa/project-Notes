@@ -1,8 +1,11 @@
 extends layout
 
 block contentTodos
+  include modal
   #myDIV.header-todos
-    h1= title
+    .form-row
+      .col.d-flex.justify-content-center
+        input(type ="text" value = title readonly class = "todo-title h1",id="todoTitle")
     br
     .form-row
       .col-9
@@ -15,5 +18,6 @@ block contentTodos
      li(class=`${todo.checked ? "checked listItem" :"listItem"}` )= todo.text
   hr
   .mb-5
-    input.btn.btn-success.mr-3(type='button', value='Exit')
+    input.btn.btn-primary.d-none(type='button', value='Exit' id="exitAndUpdateTodo")
+    div.btn.btn-primary(id="submit") Submit
     a.btn.btn-danger.delete-todo(href='#', data-id=todo_id) Delete

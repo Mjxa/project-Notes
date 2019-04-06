@@ -49,13 +49,13 @@ router.post('/edit/:id', function(req, res){
   todo.body = req.body.body;
   let query = {_id: req.params.id};
 
-  Todo.update(query, todo, function(err){
+  Todo.updateOne(query, todo, function(err){
     if(err) {
       console.error(err);
       return;
     } else {
-      req.flash('success', 'Todo list Updated');
-      res.redirect('/');
+      req.flash('success', 'Todo Updated')
+      res.send('Success');
     }
   })
 });
@@ -63,8 +63,9 @@ router.post('/edit/:id', function(req, res){
 // Delete post
 router.delete('/:id', function(req, res){
   let query = {_id: req.params.id};
-
-  Todo.remove(query, function(err){
+  
+//правка от Тараса
+  Todo.deleteOne(query, function(err){
     if(err) {
       console.error(err);
       return;

@@ -19,7 +19,12 @@ html
           li.nav-item
             a.btn.btn-warning.mr-3.nav-link(href='/notes/add') Add Note
           li.nav-item
-            a.btn.btn-danger.mr-3.nav-link(href='/todos/add') Add Todo list          
+            a.btn.btn-danger.mr-3.nav-link(href='/todos/add') Add Todo list
+    .container.top-links.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-none.to_note
+      a.btn-warning.mr-3.nav-link.rounded(id="linknote")
+        i.fas.fa-arrow-right NOTES  
+      a.btn-danger.mr-3.nav-link.rounded(id="linktodo")
+        i.fas.fa-arrow-right TODO                   
     .container
       .row
         .col-12
@@ -31,9 +36,11 @@ html
       block content
       block contentTodos
       #stop.scrollTop
+         
         a(href='')
           i.fa.fa-arrow-up.toparrow   
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
     script(src='/js/main.js')
+    

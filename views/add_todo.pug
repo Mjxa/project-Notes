@@ -2,7 +2,7 @@ extends layout
 
 block contentTodos
   h1 #{title}
-
+  include modal
   #myDIV.header-todos
     .form-row
       .col-9.mb-3
@@ -13,6 +13,7 @@ block contentTodos
         span.addBtn.btn.btn-secondary.form-control Add
   ul#myUL
   br 
-  input.btn.btn-primary(type='button', value='Submit')
+  input.btn.btn-primary.d-none(type='button', value='Submit' id="addNewTodo")
+  div.btn.btn-primary(id="submit") Submit
 
 

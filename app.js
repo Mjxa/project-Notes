@@ -11,7 +11,9 @@ const config = require('./config/database');
 const Note = require('./models/note');
 const Todo = require('./models/todo');
 
-mongoose.connect(config.database);
+//правка от Тараса 
+
+mongoose.connect(config.database, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 

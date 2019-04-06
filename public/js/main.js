@@ -20,6 +20,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.delete-note').on('click', function (e) {
+        if (confirm("Delete?")){
         $target = $(e.target);
         const id = $target.attr('data-id');
 
@@ -27,14 +28,14 @@ $(document).ready(function () {
             type: 'DELETE',
             url: '/notes/' + id,
             success: function (response) {
-                alert('Deleting note');
+
                 window.location.href = '/';
             },
             error: function (err) {
                 console.error(err);
             }
         });
-    });
+    }});
 });
 
 $(".note").each(function (index) {
@@ -49,6 +50,7 @@ $(".to-do").each(function (index) {
 //delete todo
 
 $('.delete-todo').on('click', function (e) {
+    if (confirm("Delete?")){
     $target = $(e.target);
     const id = $target.attr('data-id');
 
@@ -56,18 +58,18 @@ $('.delete-todo').on('click', function (e) {
         type: 'DELETE',
         url: '/todos/' + id,
         success: function (response) {
-            alert('Deleting todo list');
+
             window.location.href = '/';
         },
         error: function (err) {
             console.error(err);
         }
     });
-});
+}});
 
 //add todo new version
 
-$('input[value="Submit"]').on('click', async function (e) {
+$('#addNewTodo').on('click', async function (e) {
     e.preventDefault();
     const todoList = [];
     const elems = document.getElementsByClassName('listItem');
@@ -88,7 +90,7 @@ $('input[value="Submit"]').on('click', async function (e) {
         body: todoList
     };
     if (body.title == "" || body.body.length == 0) {
-        alert('title and list are required')
+        document.getElementById("openModal").click()
     } else {
         fetch('/todos/add', {
             method: 'POST',
@@ -98,8 +100,6 @@ $('input[value="Submit"]').on('click', async function (e) {
             body: JSON.stringify(body)
         }).then(function (response) {
             if (response.ok) {
-                console.log('todo added');
-                alert('todo added');
                 window.location.href = '/';
             }
         }).catch(function (error) {
@@ -108,9 +108,15 @@ $('input[value="Submit"]').on('click', async function (e) {
     }
 });
 
-//update todolist 
+  // edit todo title
 
-$('input[value="Exit"]').on('click', async function (e) {
+  $('.todo-title').on('click',  function () {
+    $(this).removeAttr( "readonly")
+  });
+
+  //update todolist 
+
+  $('#exitAndUpdateTodo').on('click', async function (e) {
     e.preventDefault();
     const todoList = [];
     const elems = document.getElementsByClassName('listItem');
@@ -126,15 +132,15 @@ $('input[value="Exit"]').on('click', async function (e) {
             todoList.push(listItem);
         }
     });
-
+    await todoList.sort((elementA,elementB)=>elementA.checked-elementB.checked)
     let body = {
         id: $('#inputId').val(),
-        title: $('h1').text(),
+        title: $('.todo-title').val(),
         body: todoList
     };
 
     if (body.body.length == 0) {
-        alert('at least one item in list is required')
+        document.getElementById("openModal").click()
     } else {
         fetch('/todos/edit/' + body.id, {
             method: 'POST',
@@ -144,8 +150,6 @@ $('input[value="Exit"]').on('click', async function (e) {
             body: JSON.stringify(body)
         }).then(function (response) {
             if (response.ok) {
-                console.log('todo updated');
-                alert('todo updated');
                 window.location.href = '/';
             }
         }).catch(function (error) {
@@ -176,13 +180,21 @@ for (i = 0; i < close.length; i++) {
 
 // Add a "checked" symbol when clicking on a list item
 
+if (~window.location.href.split("/").indexOf("todos")){
 var list = document.getElementById('myUL');
 list.addEventListener('click', function (ev) {
 if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
 }
 }, false);
-
+var addBtn = document.querySelector('.addBtn');
+addBtn.addEventListener('click', newElement);
+myInput.addEventListener('keypress', function (e) {
+ var key = e.which || e.keyCode;
+ if (key === 13) { newElement()
+ }
+});
+}
 // Create a new list item when clicking on the "Add" button
 function newElement() {
     var li = document.createElement("li");
@@ -191,7 +203,7 @@ function newElement() {
     var t = document.createTextNode(inputValue);
     li.appendChild(t);
     if (inputValue === '') {
-        alert("You must write something!");
+        document.getElementById("openModal").click();
     } else {
         document.getElementById("myUL").appendChild(li);
     }
@@ -208,8 +220,25 @@ function newElement() {
         }
     }
 }
-var addBtn = document.querySelector('.addBtn');
-addBtn.addEventListener('click', newElement);
+if(window.location.pathname==="/"){
+    $(".top-links").toggleClass("d-none")
+}
+function scrollToAnchor(aid){
+    var aTag = $("#"+aid);
+    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+}
+$("#linktodo").click(function() {
+    scrollToAnchor('todo_block');
+ });
+ $("#linknote").click(function() {
+    scrollToAnchor('notes_block');
+ });
 
+ if (window.location.pathname!="/")submit.addEventListener("click",function (){
 
-
+    if ([].reduce.call(document.getElementsByClassName("form-control"),function (acc,element) {
+        return element.nodeName=="SPAN"||element.placeholder ? acc : element.value==""||element.innerText?false:acc},true)&&(typeof todoTitle == "undefined" || todoTitle.value!=""))
+    {
+     document.getElementsByClassName("btn btn-primary d-none")[0].click()
+    }else{document.getElementById("openModal").click()}
+ })
