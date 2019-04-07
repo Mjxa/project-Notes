@@ -6,7 +6,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const config = require('./config/database');
-
+const port = process.env.PORT || 80
 // Note model
 const Note = require('./models/note');
 const Todo = require('./models/todo');
@@ -107,6 +107,6 @@ let todos = require('./routes/todos');
 app.use('/notes', notes);
 app.use('/todos', todos);
 
-app.listen(3000, function () {
+app.listen(port, function () {
     console.log(`Server started on port 3000`);
 })
