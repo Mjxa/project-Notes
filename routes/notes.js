@@ -78,7 +78,7 @@ router.get('/edit/:id', function(req, res){
 });
 
 // update submit new note 
-router.post('/edit/:id', async function(req, res){
+router.post('/edit/:id', function(req, res){
   let note = {};
   let query
   // code for upload image to server and add img patch in mongoDB
@@ -94,10 +94,10 @@ router.post('/edit/:id', async function(req, res){
   note.img=decodeURI(req.get("fileName"))
   query = {_id: req.url.split("/")[req.url.split("/").length-1]}
   req.pipe(req.busboy);
-  await req.busboy.on('file', function (fieldname, file, filename) {
+  req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);  
       fstream = fs.createWriteStream(__dirname.replace(/routes/,"") +"/public/img/" + filename);
-      file.pipe(transformer).pipe(fstream);
+      file.pipe(fstream);
       fstream.on('close', function () {
       console.log("File saved: " + filename);
       });
@@ -110,7 +110,7 @@ router.post('/edit/:id', async function(req, res){
   }
 
 //Правка от Тараса 
- await Note.updateOne(query, note, function(err){
+  Note.updateOne(query, note, function(err){
     if(err) {
       console.error(err);
       return;
