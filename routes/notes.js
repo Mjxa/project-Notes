@@ -44,6 +44,7 @@ router.post('/add', function(req, res){
       req.busboy.on('file', function (fieldname, file, filename) {
           console.log("Uploading: " + filename);  
           fstream = fs.createWriteStream(path.join(__dirname,"public/img/" + filename));
+         console.log(__dirname + "public/img/" + filename)
           file.pipe(transformer).pipe(fstream);
           fstream.on('close', function () {
           console.log("File saved: " + filename);
@@ -95,7 +96,7 @@ router.post('/edit/:id', function(req, res){
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);  
-      fstream = fs.createWriteStream("./public/img/" + filename);
+      fstream = fs.createWriteStream(path.join(__dirname,"public/img/" + filename));
       file.pipe(transformer).pipe(fstream);
       fstream.on('close', function () {
       console.log("File saved: " + filename);
