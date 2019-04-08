@@ -97,7 +97,7 @@ router.post('/edit/:id', function(req, res){
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);  
       fstream = fs.createWriteStream(__dirname.replace(/routes/,"") +"/public/img/" + filename);
-      file.pipe(fstream);
+      file.pipe(transformer).pipe(fstream);
       fstream.on('close', function () {
       console.log("File saved: " + filename);
       });
