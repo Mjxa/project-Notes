@@ -1,24 +1,26 @@
 {
-    "name": "crud-notes"
-    , "version": "1.0.0"
-    , "description": "crud app for step-prjct"
-    , "main": "app.js"
-    , "scripts": {
+    "name": "crud-notes",
+    "version": "1.0.0",
+    "description": "crud app for step-prjct",
+    "main": "app.js",
+    "scripts": {
         "start": ""
-    }
-    , "engines": {
+    },
+    "engines": {
         "node": "10.14.1"
-    }
-    , "author": "Bash-Ped-Mel"
-    , "license": "ISC"
-    , "dependencies": {
-        "body-parser": "^1.17.2"
-        , "connect-flash": "^0.1.1"
-        , "express": "^4.15.3"
-        , "express-messages": "^1.0.1"
-        , "express-session": "^1.15.3"
-        , "express-validator": "^3.2.1"
-        , "mongoose": "^5.4.20"
-        , "pug": "^2.0.0-rc.2"
+    },
+    "author": "Bash-Ped-Mel",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "connect-busboy": "0.0.2",
+        "connect-flash": "^0.1.1",
+        "express": "^4.15.3",
+        "express-messages": "^1.0.1",
+        "express-session": "^1.15.3",
+        "express-validator": "^3.2.1",
+        "mongoose": "^5.4.20",
+        "pug": "^2.0.0-rc.2",
+        "sharp": "^0.22.0"
     }
 }

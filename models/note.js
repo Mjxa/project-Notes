@@ -9,6 +9,10 @@ const noteSchema = mongoose.Schema({
   body: {
     type: String,
     required: true
+  },
+  img: {
+    type: String,
+    required: false
   }
 });
 

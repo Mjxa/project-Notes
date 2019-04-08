@@ -10,6 +10,8 @@ block content
             h5.card-title= note.title
             .collapse.card-text.note= note.body
               hr
+              if(note.img)
+                img.note-img(src=`/img/${note.img}`)
               .buttons.my-3
                 a.btn.btn-warning.mr-3(href='/notes/edit/'+note._id) Edit
                 a.btn.btn-danger.delete-note(href='#', data-id=note._id) Delete

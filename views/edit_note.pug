@@ -10,6 +10,13 @@ block content
     .form-group
       label Body:
       textarea.form-control(name='body')= note.body
+    -if(note.img)
+      img(src=`/img/${note.img}`, alt="")
+    br
     br
     input.btn.btn-primary.d-none(type='submit', value='Submit')
-    div.btn.btn-primary(id="submit") Submit
+  form(id="fileForm" method="POST" class="upload_img")   
+    label.btn.btn-secondary Choose a file  
+      input.d-none( type="file" id="fileSelect" name="file" accept=".jpg, .png")
+  div.btn.btn-primary(id="submit") Submit
+    script(src="/js/add_img.js")

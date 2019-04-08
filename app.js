@@ -6,10 +6,13 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const config = require('./config/database');
+const fs = require('fs');
+const busboy = require('connect-busboy');
 const port = process.env.PORT || 80
 // Note model
 const Note = require('./models/note');
 const Todo = require('./models/todo');
+
 
 //правка от Тараса 
 
@@ -32,6 +35,9 @@ const app = express();
 // View engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(busboy());
+// Body Parser 
 
 // Body Parser 
 app.use(bodyParser.urlencoded({

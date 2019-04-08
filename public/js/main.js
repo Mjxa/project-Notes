@@ -233,12 +233,13 @@ $("#linktodo").click(function() {
  $("#linknote").click(function() {
     scrollToAnchor('notes_block');
  });
-
- if (window.location.pathname!="/")submit.addEventListener("click",function (){
+ // Ninja code section by Mixail =)
+ function checkFields (){
 
     if ([].reduce.call(document.getElementsByClassName("form-control"),function (acc,element) {
         return element.nodeName=="SPAN"||element.placeholder ? acc : element.value==""||element.innerText?false:acc},true)&&(typeof todoTitle == "undefined" || todoTitle.value!=""))
     {
-     document.getElementsByClassName("btn btn-primary d-none")[0].click()
-    }else{document.getElementById("openModal").click()}
- })
+        (typeof fileSelect == "undefined"|| fileSelect.value =="") ?  document.getElementsByClassName("btn btn-primary d-none")[0].click() :fileForm.dispatchEvent(new Event("submit"));
+    }else{  document.getElementById("openModal").click()}
+ }
+ if (window.location.pathname!="/")submit.addEventListener("click",checkFields)
