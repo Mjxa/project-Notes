@@ -94,11 +94,11 @@ router.post('/edit/:id', function(req, res){
   note.img=decodeURI(req.get("fileName"))
   query = {_id: req.url.split("/")[req.url.split("/").length-1]}
   req.pipe(req.busboy);
-  req.busboy.on('file', function (fieldname, file, filename) {
+  req.busboy.on('file', async function (fieldname, file, filename) {
       console.log("Uploading: " + filename);  
       fstream = fs.createWriteStream(__dirname.replace(/routes/,"") +"/public/img/" + filename);
-      file.pipe(transformer).pipe(fstream);
-      fstream.on('close', function () {
+      await file.pipe(transformer).pipe(fstream);
+      await fstream.on('close', function () {
       console.log("File saved: " + filename);
       });
   });
