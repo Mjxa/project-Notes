@@ -15,8 +15,8 @@ block content
     br
     br
     input.btn.btn-primary.d-none(type='submit', value='Submit')
-  form(id="fileForm" method="POST" class="upload_img")   
+  form(id="fileForm" method="POST" class="upload_img" enctype="multipart/form-data" action="myapp/do_upload")   
     label.btn.btn-secondary Choose a file  
-      input.d-none( type="file" id="fileSelect" name="file" accept=".jpg, .png")
+      input.d-none( type="file" id="fileSelect" name="file" accept=".jpg, .png image/*" capture="camera")
   div.btn.btn-primary(id="submit") Submit
     script(src="/js/add_img.js")
