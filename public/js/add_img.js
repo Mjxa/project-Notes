@@ -17,7 +17,6 @@
       headers:fileName ,
       body: formData,
     }).then(response => {
-      console.log(fileName)
-      console.log(response)
+      document.getElementsByClassName("btn btn-primary d-none")[0].click()
     })
   }
