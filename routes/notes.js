@@ -91,9 +91,6 @@ router.post('/edit/:id', function(req, res){
       })
       });
   });
-      
-      });
-  });
 
 }else{
   query = {_id: req.params.id};
