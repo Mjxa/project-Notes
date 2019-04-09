@@ -77,7 +77,17 @@ router.post('/edit/:id', function(req, res){
       fstream = fs.createWriteStream("./public/img/" + filename);
       file.pipe(transformer).pipe(fstream);
       fstream.on('close', function () {
-      console.log("File saved: " + filename);
+      console.log("File saved: " + filename)
+      Note.updateOne(query, note, function(err){
+        if(err) {
+          console.error(err);
+          return;
+        } else {
+          console.log("note updated")
+          req.flash('success', 'Note Updated');
+          res.redirect('/');
+        }
+      })
       });
   });
 
@@ -85,18 +95,17 @@ router.post('/edit/:id', function(req, res){
   query = {_id: req.params.id};
   note.title = req.body.title;
   note.body = req.body.body;
-  }
-
 //Правка от Тараса 
   Note.updateOne(query, note, function(err){
     if(err) {
       console.error(err);
       return;
     } else {
+      console.log("note updated")
       req.flash('success', 'Note Updated');
       res.redirect('/');
     }
-  })
+  }) }
 });
 
 // Delete post
