@@ -29,29 +29,6 @@ router.post('/add', function(req, res){
       errors: errors
     });
   } else {
-    if (req.headers['content-type'].split(";")[0]=='multipart/form-data'){
-      var fstream;
-      const transformer = sharp()
-      .resize({
-        width: 200,
-        height: null,
-        fit: sharp.fit.cover,
-        position: sharp.strategy.entropy
-      });
-      note.img=decodeURI(req.get("fileName"))
-      query = {_id: req.url.split("/")[req.url.split("/").length-1]}
-      req.pipe(req.busboy);
-      req.busboy.on('file', function (fieldname, file, filename) {
-          console.log("Uploading: " + filename);  
-          fstream = fs.createWriteStream(path.join(__dirname,"public/img/" + filename));
-         console.log(__dirname + "public/img/" + filename)
-          file.pipe(transformer).pipe(fstream);
-          fstream.on('close', function () {
-          console.log("File saved: " + filename);
-          res.redirect('back')
-          });
-      });
-    }else{
     let note = new Note();
     note.title = req.body.title;
     note.body = req.body.body;
@@ -65,7 +42,7 @@ router.post('/add', function(req, res){
         res.redirect('/');
       }
     });
- } }
+ }
 });
 
 // load edit form
@@ -97,7 +74,7 @@ router.post('/edit/:id', function(req, res){
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);  
-      fstream = fs.createWriteStream(__dirname.replace(/routes/,"") +"/public/img/" + filename);
+      fstream = fs.createWriteStream("./public/img/" + filename);
       file.pipe(transformer).pipe(fstream);
       fstream.on('close', function () {
       console.log("File saved: " + filename);
