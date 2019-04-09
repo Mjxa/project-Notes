@@ -19,5 +19,6 @@
     }).then(response => {
       // document.getElementsByClassName("btn btn-primary d-none")[0].click()
       console.log(response)
+      console.log(response)
     })
   }
