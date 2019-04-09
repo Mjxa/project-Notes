@@ -48,6 +48,7 @@ router.post('/add', function(req, res){
           file.pipe(transformer).pipe(fstream);
           fstream.on('close', function () {
           console.log("File saved: " + filename);
+          res.redirect('back')
           });
       });
     }else{
