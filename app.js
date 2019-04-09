@@ -42,7 +42,7 @@ app.use(busboy());
 // Body Parser 
 // app.use(bodyParser.urlencoded({
 //     extended: false
-}));
+// }));
 app.use(bodyParser.json({limit:'50mb'})); 
 app.use(bodyParser.urlencoded({extended:true, limit:'50mb'}));
 // parse application/json
